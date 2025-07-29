@@ -12,7 +12,11 @@ SECRET_KEY = 'django-insecure-!1)n+2n_)lqk41y2*j6et^y$d%1_*e$s288#(7)(-mw(3o=avf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False  # Will be set to True in dev.py
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'ourmoney-backend.onrender.com',
+    '127.0.0.1',
+    'localhost',
+]
 
 # Application definition
 INSTALLED_APPS = [
