@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <!-- Header -->
+  <div class="bg-white border-b border-gray-200 px-6 py-5">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-2xl font-semibold text-gray-900">Invoices</h1>
+        <p class="text-sm text-gray-600 mt-1">Manage and send professional invoices</p>
+      </div>
+      <a href="{% url 'admin:core_invoice_add' %}" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2 rounded-lg text-sm transition">
+        + New Invoice
+      </a>
+    </div>
+  </div>
+
+  <!-- Invoices Table -->
+  <div class="bg-white shadow rounded-lg mt-6 mx-6 overflow-hidden">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Client</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Invoice</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Amount</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Status</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Due Date</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        {% for invoice in invoices %}
+        <tr class="hover:bg-gray-50 transition duration-75">
+          <td class="px-6 py-4 text-sm font-medium text-gray-800">{{ invoice.client.name }}</td>
+          <td class="px-6 py-4 text-sm text-gray-600">{{ invoice.invoice_number }}</td>
+          <td class="px-6 py-4 text-sm font-medium text-gray-900">USD {{ invoice.total|floatformat:2 }}</td>
+          <td class="px-6 py-4 text-sm">
+            {% if invoice.status == 'paid' %}
+              <span class="inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">Paid</span>
+            {% elif invoice.status == 'pending' %}
+              <span class="inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-800">Pending</span>
+            {% else %}
+              <span class="inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-800">Overdue</span>
+            {% endif %}
+          </td>
+          <td class="px-6 py-4 text-sm text-gray-600">{{ invoice.due_date|date:"M d" }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5" class="px-6 py-8 text-center text-gray-500">
+            <svg class="mx-auto h-8 w-8 text-gray-300 mb-2 opacity-75" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <p class="text-sm">No invoices yet. Create your first one to get started.</p>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Footer -->
+  <div class="mx-6 mt-8 text-center text-sm text-gray-500 pb-6">
+    <p>© 2025 OurMoney. Built for entrepreneurs, by builders.</p>
+  </div>
+{% endblock %}
