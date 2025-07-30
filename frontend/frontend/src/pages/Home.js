@@ -233,24 +233,24 @@ export default function Home() {
           <div>
             <h3 className="text-lg font-bold mb-4">Features</h3>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="#" className="hover:text-white">Invoicing</a></li>
-              <li><a href="#" className="hover:text-white">Payments</a></li>
-              <li><a href="#" className="hover:text-white">Accounting</a></li>
+              <li><a href="/" className="hover:text-white">Invoicing</a></li>
+              <li><a href="/" className="hover:text-white">Payments</a></li>
+              <li><a href="/" className="hover:text-white">Accounting</a></li>
             </ul>
           </div>
           <div>
             <h3 className="text-lg font-bold mb-4">Company</h3>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="#" className="hover:text-white">About</a></li>
-              <li><a href="#" className="hover:text-white">Blog</a></li>
-              <li><a href="#" className="hover:text-white">Careers</a></li>
+              <li><a href="/" className="hover:text-white">About</a></li>
+              <li><a href="/" className="hover:text-white">Blog</a></li>
+              <li><a href="/" className="hover:text-white">Careers</a></li>
             </ul>
           </div>
           <div>
             <h3 className="text-lg font-bold mb-4">Support</h3>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="#" className="hover:text-white">Help Center</a></li>
-              <li><a href="#" className="hover:text-white">Contact</a></li>
+              <li><a href="/" className="hover:text-white">Help Center</a></li>
+              <li><a href="/" className="hover:text-white">Contact</a></li>
             </ul>
           </div>
         </div>
