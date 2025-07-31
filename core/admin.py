@@ -1,20 +1,17 @@
 from django.contrib import admin
 from .models import Client, Invoice, LineItem
 
-class LineItemInline(admin.TabularInline):
-    model = LineItem
-    extra = 1
-
-class InvoiceAdmin(admin.ModelAdmin):
-    inlines = [LineItemInline]
-    list_display = ('client', 'invoice_number', 'date', 'get_total')
-
-    @admin.display(description='Total')
-    def get_total(self, obj):
-        return obj.total
-
+@admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email')
+    list_display = ['name', 'email', 'phone']
+    search_fields = ['name', 'email']
 
-admin.site.register(Client, ClientAdmin)
-admin.site.register(Invoice, InvoiceAdmin)
+@admin.register(Invoice)
+class InvoiceAdmin(admin.ModelAdmin):
+    list_display = ['invoice_number', 'client', 'user', 'status', 'created_at']
+    list_filter = ['status', 'created_at', 'user']
+    search_fields = ['invoice_number', 'client__name']
+
+@admin.register(LineItem)
+class LineItemAdmin(admin.ModelAdmin):
+    list_display = ['invoice', 'description', 'quantity', 'unit_price']
